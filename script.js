@@ -34,9 +34,9 @@ function formatWeatherData(data) {
     return `
       <div id="forecast-card" class="day-forecast">
         <h3>${dayOfWeek}</h3>
-        <p><strong>Temperatures:</strong> ${temperatureList.join('°C, ')}°C</p>
+        <p><strong>Temperatures:</strong> ${temperatureList.join('°F, ')}°F</p>
         <p><strong>Descriptions:</strong> ${descriptionList.join(', ')}</p>
-        <p><strong>Weather:</strong> ${iconList.join('')}</p>
+        <p><strong>Icons:</strong> ${iconList.join('')}</p>
       </div>
     `;
   });
@@ -52,7 +52,7 @@ function formatWeatherData(data) {
 
 
 async function getWeatherData(city) {
-  const url = `${apiUrl}?q=${city}&appid=${apiKey}&units=metric`;
+  const url = `${apiUrl}?q=${city}&appid=${apiKey}&units=imperial`;
   const response = await fetch(url);
   const data = await response.json();
   return data;
