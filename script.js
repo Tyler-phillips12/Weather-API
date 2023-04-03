@@ -52,7 +52,7 @@ function formatWeatherData(data) {
         <h3>${dayOfWeek}</h3>
         <p><strong>Temperatures:</strong> ${temperatureList.join("°F, ")}°F</p>
         <p><strong>Descriptions:</strong> ${descriptionList.join(", ")}</p>
-        <p><strong>Icons:</strong> ${iconList.join("")}</p>
+        <p><strong>Weather:</strong> ${iconList.join("")}</p>
       </div>
     `;
     }
