@@ -2,7 +2,15 @@ const apiKey = "363aefdd802ea74dad145c01ad39d471";
 const apiUrl = "https://api.openweathermap.org/data/2.5/forecast";
 
 // Define an array of days of the week
-const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
 function formatWeatherData(data) {
   const cityName = data.city.name;
@@ -27,29 +35,37 @@ function formatWeatherData(data) {
   });
 
   // Format the forecast data for each day
-  const formattedForecastData = Object.entries(forecastDataByDay).map(([dayOfWeek, forecasts]) => {
-    const temperatureList = forecasts.map((forecast) => forecast.main.temp.toFixed(1));
-    const descriptionList = forecasts.map((forecast) => forecast.weather[0].description);
-    const iconList = forecasts.map((forecast) => `<img src="https://openweathermap.org/img/w/${forecast.weather[0].icon}.png">`);
-    return `
+  const formattedForecastData = Object.entries(forecastDataByDay).map(
+    ([dayOfWeek, forecasts]) => {
+      const temperatureList = forecasts.map((forecast) =>
+        forecast.main.temp.toFixed(1)
+      );
+      const descriptionList = forecasts.map(
+        (forecast) => forecast.weather[0].description
+      );
+      const iconList = forecasts.map(
+        (forecast) =>
+          `<img src="https://openweathermap.org/img/w/${forecast.weather[0].icon}.png">`
+      );
+      return `
       <div id="forecast-card" class="day-forecast">
         <h3>${dayOfWeek}</h3>
-        <p><strong>Temperatures:</strong> ${temperatureList.join('°F, ')}°F</p>
-        <p><strong>Descriptions:</strong> ${descriptionList.join(', ')}</p>
-        <p><strong>Icons:</strong> ${iconList.join('')}</p>
+        <p><strong>Temperatures:</strong> ${temperatureList.join("°F, ")}°F</p>
+        <p><strong>Descriptions:</strong> ${descriptionList.join(", ")}</p>
+        <p><strong>Icons:</strong> ${iconList.join("")}</p>
       </div>
     `;
-  });
+    }
+  );
 
   // Join the formatted data for each day and return as a single string
   return `
     <div class="forecast">
       <h2>5-Day Weather Forecast for ${cityName}</h2>
-      ${formattedForecastData.join('')}
+      ${formattedForecastData.join("")}
     </div>
   `;
 }
-
 
 async function getWeatherData(city) {
   const url = `${apiUrl}?q=${city}&appid=${apiKey}&units=imperial`;
@@ -84,7 +100,3 @@ window.addEventListener("load", () => {
     resultDiv.innerHTML = formattedWeatherData;
   }
 });
-
-
-
-
