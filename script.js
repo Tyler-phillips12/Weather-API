@@ -100,3 +100,4 @@ window.addEventListener("load", () => {
     resultDiv.innerHTML = formattedWeatherData;
   }
 });
+
